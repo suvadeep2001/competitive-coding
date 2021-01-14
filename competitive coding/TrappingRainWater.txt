@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int find_total_water(int arr[],int n){
+    int total_water = 0; //ans
+
+    for (int i = 1; i < n-1 ; ++i)
+    {
+        int left_max = arr[i];
+
+        for (int j = 0; j < i; ++j)
+        {
+           left_max = max(left_max,arr[j]);  // it's O(n)	
+        }
+        int right_max = arr[i];	
+         for (int j = i+1; j < n; ++j) 
+        {
+           right_max = max(right_max,arr[j]); // it's O(n)	
+        }
+    total_water = total_water + min(left_max,right_max) - arr[i];
+    }
+    return total_water;
+}
+
+int main(){
+	int arr[] = {4,0,2,0,7};
+
+	cout<<find_total_water(arr,5);
+	return 0;
+}
+
+
